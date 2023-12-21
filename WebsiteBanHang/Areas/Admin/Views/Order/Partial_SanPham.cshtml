@@ -1,0 +1,37 @@
+﻿@model IEnumerable<WebsiteBanHang.Models.EF.OrderDetail>
+@if (Model != null && Model.Any())
+{
+    int i = 1;
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>STT</th>
+                @*<th>Ảnh sản phẩm</th>*@
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                //var strImg = "";
+                //var CheckImage = item.ProductImage.FirstOrDefault(x => x.IsDefault);
+                //if (CheckImage != null)
+                //{
+                //    strImg = CheckImage.Image;
+                //}
+                <tr>
+                    <td>@i</td>
+                    @*<td><img class="imgproduct" data-id="@item.Id" src="@strImg" width="50" /></td>*@
+                    <td>@item.Product.Title</td>
+                    <td>@WebsiteBanHang.Common.Common.FormatNumber(item.Price, 0)đ</td>
+                    <td>@item.Quantity</td>
+                    <td>@WebsiteBanHang.Common.Common.FormatNumber((item.Price * item.Quantity), 0)đ</td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+}
